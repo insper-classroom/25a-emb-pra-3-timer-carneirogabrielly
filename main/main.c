@@ -20,8 +20,6 @@ volatile int start_time;
 volatile int end_time;
 volatile bool timer_fired = false;
 
-bool run = false;
-
 void callback_echo(uint gpio, uint32_t events)
 {
     if (events & GPIO_IRQ_EDGE_RISE)
@@ -74,6 +72,7 @@ int main()
     rtc_set_datetime(&t_0);
 
     alarm_id_t alarme;
+    bool run = false;
 
     while (true)
     {
