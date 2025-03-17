@@ -105,7 +105,16 @@ int main()
                 uint32_t duracao_us = end_time - start_time;
                 float distancia = (duracao_us / 2.0) * 0.0343;
                 rtc_get_datetime(&t_0);
-                printf("%02d:%02d:%02d - %.2f cm\n", t_0.hour, t_0.min, t_0.sec, distancia);
+                if (distancia > 450)
+                {
+                    printf("%02d:%02d:%02d - Falha: Muito distante\n", t_0.hour, t_0.min, t_0.sec);
+                } else if (distancia < 2) {
+                    printf("%02d:%02d:%02d - Falha: Muito próximo\n", t_0.hour, t_0.min, t_0.sec);
+                }
+                else {
+                    printf("%02d:%02d:%02d - %.2f cm\n", t_0.hour, t_0.min, t_0.sec, distancia);
+                }
+                // printf("%02d:%02d:%02d - %.2f cm\n", t_0.hour, t_0.min, t_0.sec, distancia);
             }
             else
             {
